@@ -1,0 +1,3653 @@
+{
+    "openapi": "3.0.0",
+    "paths": {
+        "/api/v1/external/malops": {
+            "post": {
+                "operationId": "MalOpsExternalController_registerMalOp",
+                "summary": "Register a new MalOps for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterMalOpsDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "_id": "653623549138aa51d09c48a5"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "MalOps For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/malops/timelines": {
+            "post": {
+                "operationId": "MalOpsExternalController_createTimeline",
+                "summary": "Create MalOps's Timeline for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ICreateTimeline"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "_id": "6621f5ad83a5c3e5f4815839"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "MalOps For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "get": {
+                "operationId": "MalOpsExternalController_getTimelineOfMalOpForExternalSystem",
+                "summary": "Get timeline of MalOps for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "required": false,
+                        "in": "query",
+                        "description": "Specify the page of results to return",
+                        "schema": {
+                            "minimum": 1,
+                            "maximum": 2147483647,
+                            "default": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "required": false,
+                        "in": "query",
+                        "description": "The number of items returned in the response",
+                        "schema": {
+                            "minimum": 1,
+                            "maximum": 2147483647,
+                            "default": 10,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "orderBy",
+                        "required": false,
+                        "in": "query",
+                        "description": "Which field used to sort",
+                        "schema": {
+                            "default": "assetName",
+                            "enum": [
+                                "assetName",
+                                "actionName",
+                                "performedBy",
+                                "respondAt",
+                                "actionStatus"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orderDirection",
+                        "required": false,
+                        "in": "query",
+                        "description": "ASC or DESC",
+                        "schema": {
+                            "default": "desc",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "malOpIdInternal",
+                        "required": false,
+                        "in": "query",
+                        "description": "MalOp internal ID. Either this or malOpIdExternal can be provided, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive.",
+                        "schema": {
+                            "default": "674d6c688d35530be18bc6c5",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "malOpIdExternal",
+                        "required": false,
+                        "in": "query",
+                        "description": "Ticket external ID. Either this or malOpIdInternal can be provided, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive. ",
+                        "schema": {
+                            "default": "AL-001",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "totalItems": 3,
+                                            "items": [
+                                                {
+                                                    "_id": "6576e5298cadad9a3366f326",
+                                                    "malOpId": "6576e5298cadad9a3366f321",
+                                                    "respondAt": "2023-10-22T20:00:00.000Z",
+                                                    "historyAction": "malOps_detected"
+                                                },
+                                                {
+                                                    "_id": "6576e5298cadad9a3366f327",
+                                                    "malOpId": "6576e5298cadad9a3366f321",
+                                                    "respondAt": "2023-12-11T10:32:09.271Z",
+                                                    "historyAction": "create"
+                                                },
+                                                {
+                                                    "_id": "6576e631e984c98ce6a910a6",
+                                                    "malOpId": "6576e5298cadad9a3366f321",
+                                                    "assetName": "assetName",
+                                                    "respondAt": "2023-12-11T10:36:33.885Z",
+                                                    "actionStatus": "PENDING",
+                                                    "historyAction": "submit_remediation_action"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "MalOps For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/malops/{malOpExternalId}": {
+            "get": {
+                "operationId": "MalOpsExternalController_getMalOpDetailByExternalSystem",
+                "summary": "Get MalOps detail for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "malOpExternalId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "_id": "65f95b16cc1c76712cde6bb1",
+                                            "createdAt": "2024-03-19T09:29:58.947Z",
+                                            "updatedAt": "2024-03-19T09:29:58.947Z",
+                                            "updatedBy": "65f95af7cc1c76712cde6bac",
+                                            "malOpId": "AL-001",
+                                            "category": "Category",
+                                            "status": "new",
+                                            "affectedAssets": [
+                                                "affectedAsset"
+                                            ],
+                                            "affectedUsers": [
+                                                "affectedUser"
+                                            ],
+                                            "mitreTactic": {
+                                                "key": "mitreTactic"
+                                            },
+                                            "mitreTechnique": {
+                                                "key": "mitreTechnique"
+                                            },
+                                            "threatClassification": "threatClassification",
+                                            "severity": "false_positive",
+                                            "description": "Description",
+                                            "organizationId": "6566aa2106ba230d87c762dc",
+                                            "projectId": "65e6d1be91fe9d3986db2dfb",
+                                            "detectedAt": "2023-10-22T20:00:00.000Z",
+                                            "isActionRequired": false,
+                                            "graphData": {
+                                                "nodes": [
+                                                    {
+                                                        "id": "id-1",
+                                                        "name": "Name 1",
+                                                        "value": "Value 1",
+                                                        "x": -266.82776,
+                                                        "y": 299.6904
+                                                    },
+                                                    {
+                                                        "id": "id-2",
+                                                        "name": "Name 2",
+                                                        "value": "Value 2",
+                                                        "x": -418.08344,
+                                                        "y": 446.8853
+                                                    }
+                                                ],
+                                                "links": [
+                                                    {
+                                                        "source": "id-1",
+                                                        "target": "id-2"
+                                                    }
+                                                ]
+                                            },
+                                            "relatedEvents": [
+                                                {
+                                                    "timestamp": "2023-10-23T03:00:00+00:00",
+                                                    "dataset": "AWS Events (TF)",
+                                                    "eventType": "USER_LOGIN",
+                                                    "linkDetail": "link for detail"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "MalOps For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "patch": {
+                "operationId": "MalOpsExternalController_updateMalOpByExternalSystem",
+                "summary": "Update MalOps for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "malOpExternalId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateMalOpsByExternalServiceDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "malOpId": "AL-0000149"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "MalOps For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/malops/timelines/{timelineId}": {
+            "patch": {
+                "operationId": "MalOpsExternalController_updateTimeline",
+                "summary": "Update MalOps's Timeline for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "timelineId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/IUpdateTimeline"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "_id": "6621f5ad83a5c3e5f4815839"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "MalOps For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/malops/{malOpExternalId}/status": {
+            "patch": {
+                "operationId": "MalOpsExternalController_updateStatusMalOpByExternalSystem",
+                "summary": "Update Status MalOps for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "malOpExternalId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateStatusMalOpsDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "_id": "65f156e703627d04e3c22e78",
+                                            "malOpId": "AL-001",
+                                            "status": "escalated",
+                                            "updatedAt": "2024-04-19T04:58:25.559Z",
+                                            "updatedBy": "6621f0d0923188b694d71dfc"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "MalOps For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/malops/timelines/bulk-delete": {
+            "delete": {
+                "operationId": "MalOpsExternalController_deleteTimelines",
+                "summary": "Delete many Timeline  by Ids for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeleteTimelinesDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "isd": [
+                                                "6621f5ad83a5c3e5f4815839"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "MalOps For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/malops/bulk-delete": {
+            "delete": {
+                "operationId": "MalOpsExternalController_deleteMalOpList",
+                "summary": "Delete many MalOps by ids for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeleteMalOpsDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "ids": [
+                                                "6557312aa8fb496a4cee8a30"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "MalOps For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/comments/list": {
+            "get": {
+                "operationId": "CommentsExternalController_pullCommentsByExternalSystem",
+                "summary": "Pull comments by external system",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "The Accept-Language request HTTP header",
+                        "schema": {
+                            "enum": [
+                                "en",
+                                "ja",
+                                "kr",
+                                "cn"
+                            ],
+                            "example": "en",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "malOpIdInternal",
+                        "required": false,
+                        "in": "query",
+                        "description": "Ticket internal ID. Either this or malOpIdExternal can be provided, or none of them, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive.",
+                        "schema": {
+                            "default": "674d6c688d35530be18bc6c5",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "malOpIdExternal",
+                        "required": false,
+                        "in": "query",
+                        "description": "Ticket external ID. Either this or malOpIdInternal can be provided, or none of them, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive.",
+                        "schema": {
+                            "default": "AL-001",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "required": false,
+                        "in": "query",
+                        "description": "The number of items returned in the response",
+                        "schema": {
+                            "minimum": 1,
+                            "maximum": 2147483647,
+                            "default": 10,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "keyword",
+                        "required": false,
+                        "in": "query",
+                        "description": "Search by body, htmlBody",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "datePeriod[]",
+                        "required": false,
+                        "in": "query",
+                        "description": "The period of the comment created",
+                        "schema": {
+                            "default": [
+                                "2024-12-02T08:14:33.797Z",
+                                "2024-12-03T08:14:33.797Z"
+                            ],
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "nextId",
+                        "required": false,
+                        "in": "query",
+                        "description": "The first ID of the next page in case of pagination (nextId=undefined ~ first page)",
+                        "schema": {
+                            "default": "674d6c688d35530be18bc6c5",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "origin",
+                        "required": false,
+                        "in": "query",
+                        "description": "Filter by origin (internal ~ comment from user in UP | external ~ mssp support comment)",
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "isMSSPSupport",
+                        "required": false,
+                        "in": "query",
+                        "schema": {
+                            "default": false,
+                            "type": "boolean"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "totalItems": 10,
+                                            "items": [
+                                                {
+                                                    "_id": "6628aa86b0e2a16eb126fc4d",
+                                                    "createdAt": "2024-04-24T06:45:26.964Z",
+                                                    "htmlBody": "This is a html comment body <b>Bold</b> <i>Italic</i>",
+                                                    "attachments": [
+                                                        {
+                                                            "_id": "6628aa86b0e2a16eb126fc4b",
+                                                            "fileName": "fileName",
+                                                            "mimetype": "image/png",
+                                                            "url": "https://company.zendesk.com/attachments/my_funny_profile_pic.png",
+                                                            "size": 0
+                                                        }
+                                                    ],
+                                                    "malOp": {
+                                                        "_id": "65fa6eac59f0c8c5c6bedd88",
+                                                        "malOpId": "HTest-005",
+                                                        "organizationId": "65e81f2a2fb83b932490f16d"
+                                                    }
+                                                },
+                                                {
+                                                    "_id": "662b2a8822da5a1ba0454592",
+                                                    "createdAt": "2024-04-26T04:16:08.870Z",
+                                                    "htmlBody": "<p>Mssp support ne</p>",
+                                                    "attachments": [],
+                                                    "author": {
+                                                        "_id": "65e7f127f05c993c6f68a1eb",
+                                                        "name": "Platform Admin"
+                                                    },
+                                                    "malOp": {
+                                                        "_id": "65fa6eac59f0c8c5c6bedd88",
+                                                        "malOpId": "HTest-005",
+                                                        "organizationId": "65e81f2a2fb83b932490f16d"
+                                                    }
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Comments For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/comments/new": {
+            "post": {
+                "operationId": "CommentsExternalController_pushCommentByExternalSystem",
+                "summary": "Push a comment by external system",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "The Accept-Language request HTTP header",
+                        "schema": {
+                            "enum": [
+                                "en",
+                                "ja",
+                                "kr",
+                                "cn"
+                            ],
+                            "example": "en",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateCommentExternalDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "_id": "657ae19bc0ba303b56dbf040",
+                                            "createdAt": "2023-12-14T11:06:03.837Z",
+                                            "updatedAt": "2023-12-14T11:06:03.837Z",
+                                            "updatedBy": "657ae1418141479ff5169dad",
+                                            "body": "This is a plain comment body",
+                                            "htmlBody": "This is a html comment body <b>Bold</b> <i>Italic</i>",
+                                            "mentionedUserIds": [
+                                                "657ae152db8a02c68c92cc53"
+                                            ],
+                                            "attachmentIds": [
+                                                "657ae19bc0ba303b56dbf03e"
+                                            ],
+                                            "parentId": null,
+                                            "authorId": "657ae1418141479ff5169dad",
+                                            "targetId": "657ae1428141479ff5169f92",
+                                            "type": "malOp_ticket",
+                                            "origin": "internal",
+                                            "id": "657ae19bc0ba303b56dbf040",
+                                            "author": {
+                                                "_id": "657ae1418141479ff5169dad",
+                                                "name": "Platform Admin",
+                                                "avatarId": "657ae153db8a02c68c92d4f0",
+                                                "avatar": {
+                                                    "_id": "657ae153db8a02c68c92d4f0",
+                                                    "fileName": "Avatar_0",
+                                                    "mimetype": "image/png",
+                                                    "url": "https://storage.googleapis.com/cr-gsoc-mobile-app-dev/Platform Admin_avatar/xxx",
+                                                    "createdAt": "2023-12-14T11:04:51.462Z",
+                                                    "updatedAt": "2023-12-14T11:04:51.462Z"
+                                                },
+                                                "id": "657ae1418141479ff5169dad"
+                                            },
+                                            "mentionUsers": [
+                                                {
+                                                    "_id": "657ae152db8a02c68c92cc53",
+                                                    "name": "User_3",
+                                                    "avatarId": "657ae153db8a02c68c92d4f1",
+                                                    "id": "657ae152db8a02c68c92cc53"
+                                                }
+                                            ],
+                                            "attachments": [
+                                                {
+                                                    "_id": "657ae19bc0ba303b56dbf03e",
+                                                    "fileName": "fileName",
+                                                    "mimetype": "image/png",
+                                                    "url": "https://storage.googleapis.com/cr-gsoc-mobile-app-dev/example/fileName",
+                                                    "createdAt": "2023-12-14T11:06:03.815Z",
+                                                    "updatedAt": "2023-12-14T11:06:03.815Z"
+                                                }
+                                            ],
+                                            "updatedByUser": {
+                                                "_id": "657ae1418141479ff5169dad",
+                                                "name": "Platform Admin",
+                                                "avatarId": "657ae153db8a02c68c92d4f0",
+                                                "avatar": {
+                                                    "_id": "657ae153db8a02c68c92d4f0",
+                                                    "fileName": "Avatar_0",
+                                                    "mimetype": "image/png",
+                                                    "url": "https://storage.googleapis.com/cr-gsoc-mobile-app-dev/Platform Admin_avatar/xxx",
+                                                    "createdAt": "2023-12-14T11:04:51.462Z",
+                                                    "updatedAt": "2023-12-14T11:04:51.462Z"
+                                                },
+                                                "id": "657ae1418141479ff5169dad"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Comments For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/comments/{commentExternalId}": {
+            "patch": {
+                "operationId": "CommentsExternalController_updateCommentByExternalSystem",
+                "summary": "Update a comment by external system",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "The Accept-Language request HTTP header",
+                        "schema": {
+                            "enum": [
+                                "en",
+                                "ja",
+                                "kr",
+                                "cn"
+                            ],
+                            "example": "en",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "commentExternalId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateCommentExternalDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {}
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Comments For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "get": {
+                "operationId": "CommentsExternalController_pullCommentDetailByExternalSystem",
+                "summary": "Pull comment detail by external system",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "The Accept-Language request HTTP header",
+                        "schema": {
+                            "enum": [
+                                "en",
+                                "ja",
+                                "kr",
+                                "cn"
+                            ],
+                            "example": "en",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "commentExternalId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "_id": "6628aa86b0e2a16eb126fc4d",
+                                            "createdAt": "2024-04-24T06:45:26.964Z",
+                                            "htmlBody": "This is a html comment body <b>Bold</b> <i>Italic</i>",
+                                            "attachments": [
+                                                {
+                                                    "_id": "6628aa86b0e2a16eb126fc4b",
+                                                    "fileName": "fileName",
+                                                    "mimetype": "image/png",
+                                                    "url": "https://company.zendesk.com/attachments/my_funny_profile_pic.png",
+                                                    "size": 0
+                                                }
+                                            ],
+                                            "malOp": {
+                                                "_id": "65fa6eac59f0c8c5c6bedd88",
+                                                "malOpId": "HTest-005",
+                                                "organizationId": "65e81f2a2fb83b932490f16d"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Comments For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "CommentsExternalController_deleteCommentByExternalSystem",
+                "summary": "Delete comment by external system",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "The Accept-Language request HTTP header",
+                        "schema": {
+                            "enum": [
+                                "en",
+                                "ja",
+                                "kr",
+                                "cn"
+                            ],
+                            "example": "en",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "commentExternalId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Comments For External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/projects": {
+            "get": {
+                "operationId": "ProjectExternalController_getProjectsCanAccessedByApiAccessToken",
+                "summary": "Get Projects that can accessed by API Access Token for External System",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "The Accept-Language request HTTP header",
+                        "schema": {
+                            "enum": [
+                                "en",
+                                "ja",
+                                "kr",
+                                "cn"
+                            ],
+                            "example": "en",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "required": false,
+                        "in": "query",
+                        "description": "Specify the page of results to return",
+                        "schema": {
+                            "minimum": 1,
+                            "maximum": 2147483647,
+                            "default": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "required": false,
+                        "in": "query",
+                        "description": "The number of items returned in the response",
+                        "schema": {
+                            "minimum": 1,
+                            "maximum": 2147483647,
+                            "default": 10,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "orderBy",
+                        "required": false,
+                        "in": "query",
+                        "description": "Which field used to sort",
+                        "schema": {
+                            "default": "name",
+                            "enum": [
+                                "_id",
+                                "supportId",
+                                "name",
+                                "country",
+                                "status",
+                                "serviceRegion",
+                                "createdAt",
+                                "updatedAt"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orderDirection",
+                        "required": false,
+                        "in": "query",
+                        "description": "ASC or DESC",
+                        "schema": {
+                            "default": "desc",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "keyword",
+                        "required": false,
+                        "in": "query",
+                        "description": "Find Project which has name containing this keyword",
+                        "schema": {
+                            "default": "",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "statuses[]",
+                        "required": false,
+                        "in": "query",
+                        "description": "Status of the Project",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "totalItems": 14,
+                                            "items": [
+                                                {
+                                                    "_id": "656422d007392cc4e1d07ef9",
+                                                    "name": "test123",
+                                                    "status": "active",
+                                                    "organizationId": "tesst"
+                                                },
+                                                {
+                                                    "_id": "6541e100a6e17bacb4d7471a",
+                                                    "name": "test uniq 1",
+                                                    "status": "active",
+                                                    "organizationId": "ORG-00001"
+                                                },
+                                                {
+                                                    "_id": "6541e3a9ecd27e169233a856",
+                                                    "name": "test uniq 1",
+                                                    "status": "active",
+                                                    "organizationId": "ORG-00004"
+                                                },
+                                                {
+                                                    "_id": "6541e3abecd27e169233a861",
+                                                    "name": "test uniq 1",
+                                                    "status": "active",
+                                                    "organizationId": "ORG-00004"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Projects for External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/projects/{projectExternalId}": {
+            "get": {
+                "operationId": "ProjectExternalController_getProjectDetail",
+                "summary": "Get Project Detail by external id of project for External System",
+                "parameters": [
+                    {
+                        "name": "Accept-Language",
+                        "in": "header",
+                        "description": "The Accept-Language request HTTP header",
+                        "schema": {
+                            "enum": [
+                                "en",
+                                "ja",
+                                "kr",
+                                "cn"
+                            ],
+                            "example": "en",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "projectExternalId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "code": 200,
+                                            "message": "success",
+                                            "data": {
+                                                "_id": "6641d00fa40a056b0fce2d34",
+                                                "createdAt": "2024-05-13T08:32:15.593Z",
+                                                "updatedAt": "2024-10-24T09:16:34.623Z",
+                                                "updatedBy": "65e7f127f05c993c6f68a1eb",
+                                                "createdBy": "66388bc3492fa567b32b2c20",
+                                                "organizationId": "66388fdf492fa567b32b3788",
+                                                "name": "Entity-lylee-01",
+                                                "status": "active",
+                                                "serviceRegion": "us-east-1",
+                                                "servicePackage": {
+                                                    "startDateTime": null,
+                                                    "endDateTime": null
+                                                },
+                                                "supportId": "Entity-01",
+                                                "s3Config": {
+                                                    "bucket": "us-east-1_bucket",
+                                                    "region": "us-east-1_region"
+                                                }
+                                            },
+                                            "version": "1.0.0"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Projects for External APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/remediation-actions": {
+            "post": {
+                "operationId": "RemediationActionExternalController_registerRemediationActions",
+                "summary": "Register new Remediation actions for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/RegisterRemediationActionsDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "ids": [
+                                                "6571937501bfeb2e091b947a",
+                                                "6571937501bfeb2e091b947b"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Remediation Action for External System APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "delete": {
+                "operationId": "RemediationActionExternalController_deleteRemediationActions",
+                "summary": "Delete many Remediation action  by Ids for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/DeleteRemediationActionsDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "ids": [
+                                                "6557312aa8fb496a4cee8a30"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Remediation Action for External System APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            },
+            "get": {
+                "operationId": "RemediationActionExternalController_getRemediationActionsOfMalOpForExternalSystem",
+                "summary": "Get Remediation Actions of MalOp for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "page",
+                        "required": false,
+                        "in": "query",
+                        "description": "Specify the page of results to return",
+                        "schema": {
+                            "minimum": 1,
+                            "maximum": 2147483647,
+                            "default": 1,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "required": false,
+                        "in": "query",
+                        "description": "The number of items returned in the response",
+                        "schema": {
+                            "minimum": 1,
+                            "maximum": 2147483647,
+                            "default": 10,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "orderBy",
+                        "required": false,
+                        "in": "query",
+                        "description": "Which field used to sort",
+                        "schema": {
+                            "default": "assetName",
+                            "enum": [
+                                "assetName",
+                                "actionName",
+                                "performedBy",
+                                "respondAt",
+                                "actionStatus"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "orderDirection",
+                        "required": false,
+                        "in": "query",
+                        "description": "ASC or DESC",
+                        "schema": {
+                            "default": "desc",
+                            "enum": [
+                                "asc",
+                                "desc"
+                            ],
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "malOpIdInternal",
+                        "required": false,
+                        "in": "query",
+                        "description": "MalOp internal ID. Either this or malOpIdExternal can be provided, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive.",
+                        "schema": {
+                            "default": "674d6c688d35530be18bc6c5",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "malOpIdExternal",
+                        "required": false,
+                        "in": "query",
+                        "description": "MalOp external ID. Either this or malOpIdInternal can be provided, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive. ",
+                        "schema": {
+                            "default": "AL-001",
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "totalItems": 1,
+                                            "items": [
+                                                {
+                                                    "_id": "65f156e703627d04e3c22e7a",
+                                                    "updatedAt": "2024-03-13T07:33:59.809Z",
+                                                    "updatedBy": "65f152b263ea2b91568b7ede",
+                                                    "uuid": "RM-001",
+                                                    "action": "henshin",
+                                                    "elementType": "elementType",
+                                                    "elementName": "elementName",
+                                                    "groupType": "groupType",
+                                                    "groupName": "groupName",
+                                                    "revertable": false,
+                                                    "metadata": {
+                                                        "key": "value"
+                                                    },
+                                                    "malOpId": "65f156e703627d04e3c22e78",
+                                                    "assetName": "assetName",
+                                                    "status": "AWAITING",
+                                                    "id": "65f156e703627d04e3c22e7a"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Remediation Action for External System APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/remediation-actions/{actionId}/status": {
+            "patch": {
+                "operationId": "RemediationActionExternalController_updateRemediationActionStatus",
+                "summary": "Update Response/Revert Action's result of Remediation action for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "actionId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateRemediationActionStatusDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "_id": "6571937501bfeb2e091b947c",
+                                            "status": "ERROR",
+                                            "error": "Error"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Remediation Action for External System APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/remediation-actions/polling": {
+            "get": {
+                "operationId": "RemediationActionExternalController_pollingRemediationActionsByExternalSystem",
+                "summary": "Polling Remediation actions of MalOps for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "limit",
+                        "required": false,
+                        "in": "query",
+                        "description": "The number of items returned in the response",
+                        "schema": {
+                            "minimum": 1,
+                            "maximum": 10000,
+                            "default": 10,
+                            "type": "number"
+                        }
+                    },
+                    {
+                        "name": "datePeriod[]",
+                        "required": true,
+                        "in": "query",
+                        "description": "Date period to filter",
+                        "schema": {
+                            "default": [
+                                "2023-11-15T15:30:00.000Z",
+                                "2023-11-23T15:30:00.000Z"
+                            ],
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "statuses[]",
+                        "required": false,
+                        "in": "query",
+                        "description": "Action's status to filter",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "enum": [
+                                    "AWAITING",
+                                    "PENDING",
+                                    "SUBMITTED",
+                                    "SUCCESS",
+                                    "ERROR",
+                                    "REVERT_PENDING",
+                                    "REVERT_SUBMITTED",
+                                    "REVERT_SUCCESS",
+                                    "REVERT_ERROR"
+                                ]
+                            }
+                        }
+                    },
+                    {
+                        "name": "nextId",
+                        "required": false,
+                        "in": "query",
+                        "description": "The first ID of the next page in case of pagination (nextId=undefined ~ first page)",
+                        "schema": {
+                            "default": "674d6c688d35530be18bc6c5",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "malOpIdsInternal[]",
+                        "required": false,
+                        "in": "query",
+                        "description": "malOpIdsInternal for filter",
+                        "schema": {
+                            "maxLength": 255,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    },
+                    {
+                        "name": "malOpIdsExternal[]",
+                        "required": false,
+                        "in": "query",
+                        "description": "malOpIdsExternal for filter",
+                        "schema": {
+                            "maxLength": 255,
+                            "type": "array",
+                            "items": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "nextPageParams": {
+                                                "limit": 2,
+                                                "datePeriod": [
+                                                    "2023-12-25T03:02:38.272Z",
+                                                    "2024-02-23T00:00:00.000Z"
+                                                ],
+                                                "nextId": "6588f069c5d5c2a7c2c30788"
+                                            },
+                                            "items": [
+                                                {
+                                                    "_id": "6588f0335bfe849bdeb55956",
+                                                    "createdAt": "2023-12-25T03:00:03.862Z",
+                                                    "uuid": "Performance Test PerfR-RM00007",
+                                                    "action": "henshin",
+                                                    "elementName": "elementName",
+                                                    "revertable": false,
+                                                    "assetName": "assetName",
+                                                    "status": "AWAITING",
+                                                    "id": "6588f0335bfe849bdeb55956"
+                                                },
+                                                {
+                                                    "_id": "6588f069c5d5c2a7c2c30787",
+                                                    "createdAt": "2023-12-25T03:02:38.272Z",
+                                                    "uuid": "uuid-random-0-Mon Dec 25 2023 10:02:38 GMT+0700 (Indochina Time)",
+                                                    "action": "action-random-0-Mon Dec 25 2023 10:02:38 GMT+0700 (Indochina Time)",
+                                                    "revertable": true,
+                                                    "assetName": "assetName-random-0-Mon Dec 25 2023 10:02:38 GMT+0700 (Indochina Time)",
+                                                    "status": "AWAITING",
+                                                    "id": "6588f069c5d5c2a7c2c30787"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Remediation Action for External System APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        },
+        "/api/v1/external/remediation-actions/{actionId}": {
+            "patch": {
+                "operationId": "RemediationActionExternalController_updateRemediationAction",
+                "summary": "Update Remediation action for External System",
+                "parameters": [
+                    {
+                        "name": "x-project-external-id",
+                        "in": "header",
+                        "required": true,
+                        "schema": {
+                            "example": "PROJECT-00001-VIP_PRO",
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "actionId",
+                        "required": true,
+                        "in": "path",
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateRemediationActionDto"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Success response example",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "success",
+                                        "data": {
+                                            "_id": "6571937501bfeb2e091b947c"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid parameter and/or body request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Bad Request Exception",
+                                        "errors": [
+                                            {
+                                                "key": "page",
+                                                "message": "Page must be a numeric value"
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "User is not authorized",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Unauthorized",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "444": {
+                        "description": "The item with id = xxx does not exist",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "Item does not exist",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Internal system error",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "example": {
+                                        "message": "SYSTEM_ERROR: 1625647014802-291ee2eb-59f3-4804-ba29-87d9b2bd73e9",
+                                        "errors": []
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "Remediation Action for External System APIs"
+                ],
+                "security": [
+                    {
+                        "bearer": []
+                    }
+                ]
+            }
+        }
+    },
+    "info": {
+        "title": "Cybereason MDR Mobile App 2.0 project - Platform API",
+        "description": "Provides RESTful API to external services",
+        "version": "v1",
+        "contact": {}
+    },
+    "tags": [],
+    "servers": [],
+    "components": {
+        "securitySchemes": {
+            "bearer": {
+                "scheme": "bearer",
+                "bearerFormat": "JWT",
+                "type": "http"
+            }
+        },
+        "schemas": {
+            "RemediationActionDto": {
+                "type": "object",
+                "properties": {
+                    "uuid": {
+                        "type": "string",
+                        "description": "uuid",
+                        "default": "RA-00001"
+                    },
+                    "action": {
+                        "type": "string",
+                        "description": "Remediation action",
+                        "default": "Host Isolation"
+                    },
+                    "elementType": {
+                        "type": "string",
+                        "description": "Element type",
+                        "default": "Element Type 1"
+                    },
+                    "elementName": {
+                        "type": "string",
+                        "description": "Element Name",
+                        "default": "Element Name 1"
+                    },
+                    "groupType": {
+                        "type": "string",
+                        "description": "Group type",
+                        "default": "Group Type 1"
+                    },
+                    "groupName": {
+                        "type": "string",
+                        "description": "Group name",
+                        "default": "Group Name 1"
+                    },
+                    "assetName": {
+                        "type": "string",
+                        "description": "Asset name",
+                        "default": "Asset Name 1"
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "description": "metadata",
+                        "default": {
+                            "key": "value"
+                        }
+                    },
+                    "revertable": {
+                        "type": "boolean",
+                        "description": "Is the action reversible?",
+                        "default": false
+                    }
+                },
+                "required": [
+                    "uuid",
+                    "action",
+                    "revertable"
+                ]
+            },
+            "MalOpsGraphDataDto": {
+                "type": "object",
+                "properties": {
+                    "nodes": {
+                        "description": "Nodes array",
+                        "default": [
+                            {
+                                "id": "id-1",
+                                "name": "Name 1",
+                                "value": "Value 1",
+                                "x": -266.82776,
+                                "y": 299.6904,
+                                "img": "https://www.google.com.vn/?hl=en",
+                                "icon": "gcp",
+                                "data": {
+                                    "test": true
+                                }
+                            },
+                            {
+                                "id": "id-2",
+                                "name": "Name 2",
+                                "value": "Value 2",
+                                "x": -418.08344,
+                                "y": 446.8853,
+                                "img": "https://www.google.com.vn/?hl=en",
+                                "icon": "azure",
+                                "data": {}
+                            }
+                        ],
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    },
+                    "links": {
+                        "description": "Links array",
+                        "default": [
+                            {
+                                "source": "id-1",
+                                "target": "id-2",
+                                "label": "check"
+                            }
+                        ],
+                        "type": "array",
+                        "items": {
+                            "type": "object"
+                        }
+                    }
+                },
+                "required": [
+                    "nodes",
+                    "links"
+                ]
+            },
+            "RegisterMalOpsDto": {
+                "type": "object",
+                "properties": {
+                    "malOpId": {
+                        "type": "string",
+                        "description": "Ticket external Id",
+                        "default": "AL-001"
+                    },
+                    "category": {
+                        "type": "string",
+                        "description": "Category",
+                        "default": "Category"
+                    },
+                    "affectedAssets": {
+                        "description": "Affected Assets",
+                        "default": [
+                            "affectedAsset"
+                        ],
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "affectedUsers": {
+                        "description": "Affected Users",
+                        "default": [
+                            "affectedUser"
+                        ],
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "mitreTactic": {
+                        "type": "string",
+                        "description": "Mitre Tactic",
+                        "default": "mitreTactic"
+                    },
+                    "mitreTechnique": {
+                        "type": "string",
+                        "description": "Mitre Technique",
+                        "default": "mitreTechnique"
+                    },
+                    "threatClassification": {
+                        "type": "string",
+                        "description": "Threat Classification",
+                        "default": "threatClassification"
+                    },
+                    "severity": {
+                        "type": "string",
+                        "enum": [
+                            "critical",
+                            "high",
+                            "priority",
+                            "false_positive"
+                        ],
+                        "description": "Severity",
+                        "default": "false_positive"
+                    },
+                    "detectedAt": {
+                        "format": "date-time",
+                        "type": "string",
+                        "description": "Detected Time",
+                        "default": "2023-10-23T03:00:00+07:00"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description",
+                        "default": "Description"
+                    },
+                    "remediationActions": {
+                        "description": "Remediation Actions",
+                        "default": [
+                            {
+                                "uuid": "RM-001",
+                                "action": "henshin",
+                                "elementType": "elementType",
+                                "elementName": "elementName",
+                                "groupType": "groupType",
+                                "groupName": "groupName",
+                                "assetName": "assetName",
+                                "metadata": {
+                                    "key": "value"
+                                },
+                                "revertable": false
+                            }
+                        ],
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RemediationActionDto"
+                        }
+                    },
+                    "graphData": {
+                        "description": "MalOp Graph Data",
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/MalOpsGraphDataDto"
+                            }
+                        ]
+                    },
+                    "malopGUID": {
+                        "type": "string",
+                        "description": "malop GUID",
+                        "default": "malopGUID"
+                    },
+                    "relatedEvents": {
+                        "description": "Related Event",
+                        "default": [
+                            {
+                                "timestamp": "2024-03-21T15:00:15+07:00",
+                                "dataset": "AWS Events (TF)",
+                                "eventType": "USER_LOGIN",
+                                "datasetId": "41023700",
+                                "query": "filter-log_hash=LTE0ODUzMjQ0ODY0ODAzMzQyMTc="
+                            }
+                        ],
+                        "type": "array",
+                        "items": {
+                            "type": "array"
+                        }
+                    }
+                },
+                "required": [
+                    "malOpId",
+                    "category",
+                    "affectedAssets",
+                    "affectedUsers",
+                    "mitreTactic",
+                    "mitreTechnique",
+                    "threatClassification",
+                    "severity",
+                    "detectedAt",
+                    "remediationActions",
+                    "graphData"
+                ]
+            },
+            "ICreateTimeline": {
+                "type": "object",
+                "properties": {
+                    "malOpIdInternal": {
+                        "type": "string",
+                        "default": "674d6c688d35530be18bc6c5",
+                        "description": "MalOp internal ID. Either this or malOpIdExternal can be provided, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive."
+                    },
+                    "malOpIdExternal": {
+                        "type": "string",
+                        "description": "Ticket external ID. Either this or malOpIdInternal can be provided, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive. ",
+                        "default": "AL-001"
+                    },
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "malOps_detected",
+                            "create",
+                            "update",
+                            "update_status",
+                            "register_remediation_action",
+                            "submit_remediation_action",
+                            "revert_remediation_action",
+                            "update_status_remediation_action"
+                        ],
+                        "description": "Action",
+                        "default": "submit_remediation_action"
+                    },
+                    "description": {
+                        "type": "object",
+                        "description": "description",
+                        "default": {
+                            "key": "value"
+                        }
+                    },
+                    "performedAt": {
+                        "format": "date-time",
+                        "type": "string",
+                        "description": "Performed Time",
+                        "default": "2023-10-23T03:00:00+07:00"
+                    },
+                    "remediationActionId": {
+                        "type": "string",
+                        "description": "Remediation Action Id",
+                        "default": "652f54d428908e9ad10c2f55"
+                    }
+                },
+                "required": [
+                    "action",
+                    "description",
+                    "performedAt"
+                ]
+            },
+            "IUpdateTimeline": {
+                "type": "object",
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "enum": [
+                            "malOps_detected",
+                            "create",
+                            "update",
+                            "update_status",
+                            "register_remediation_action",
+                            "submit_remediation_action",
+                            "revert_remediation_action",
+                            "update_status_remediation_action"
+                        ],
+                        "description": "Action",
+                        "default": "submit_remediation_action"
+                    },
+                    "description": {
+                        "type": "object",
+                        "description": "description",
+                        "default": {
+                            "status": "AWAITING"
+                        }
+                    },
+                    "performedAt": {
+                        "format": "date-time",
+                        "type": "string",
+                        "description": "Performed Time",
+                        "default": "2023-10-23T03:00:00+07:00"
+                    }
+                }
+            },
+            "UpdateStatusMalOpsDto": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "new",
+                            "escalated",
+                            "resolved"
+                        ],
+                        "description": "Status to update",
+                        "default": "new"
+                    }
+                }
+            },
+            "UpdateMalOpsByExternalServiceDto": {
+                "type": "object",
+                "properties": {
+                    "category": {
+                        "type": "string",
+                        "description": "Category",
+                        "default": "Category"
+                    },
+                    "affectedAssets": {
+                        "description": "Affected Assets",
+                        "default": [
+                            "affectedAsset"
+                        ],
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "affectedUsers": {
+                        "description": "Affected Users",
+                        "default": [
+                            "affectedUser"
+                        ],
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        }
+                    },
+                    "mitreTactic": {
+                        "type": "string",
+                        "description": "Mitre Tactic",
+                        "default": "mitreTactic"
+                    },
+                    "mitreTechnique": {
+                        "type": "string",
+                        "description": "Mitre Technique",
+                        "default": "mitreTechnique"
+                    },
+                    "threatClassification": {
+                        "type": "string",
+                        "description": "Threat Classification",
+                        "default": "threatClassification"
+                    },
+                    "severity": {
+                        "type": "string",
+                        "enum": [
+                            "critical",
+                            "high",
+                            "priority",
+                            "false_positive"
+                        ],
+                        "description": "Severity",
+                        "default": "false_positive"
+                    },
+                    "detectedAt": {
+                        "format": "date-time",
+                        "type": "string",
+                        "description": "Detected Time",
+                        "default": "2023-10-23T03:00:00+07:00"
+                    },
+                    "description": {
+                        "type": "string",
+                        "description": "Description",
+                        "default": "Description"
+                    },
+                    "graphData": {
+                        "description": "MalOp Graph Data",
+                        "allOf": [
+                            {
+                                "$ref": "#/components/schemas/MalOpsGraphDataDto"
+                            }
+                        ]
+                    },
+                    "malopGUID": {
+                        "type": "string",
+                        "description": "malop GUID",
+                        "default": "malopGUID"
+                    },
+                    "relatedEvents": {
+                        "description": "Related Event",
+                        "default": [
+                            {
+                                "timestamp": "2024-03-21T15:00:15+07:00",
+                                "dataset": "AWS Events (TF)",
+                                "eventType": "USER_LOGIN",
+                                "datasetId": "41023700",
+                                "query": "filter-log_hash=LTE0ODUzMjQ0ODY0ODAzMzQyMTc="
+                            }
+                        ],
+                        "type": "array",
+                        "items": {
+                            "type": "array"
+                        }
+                    }
+                }
+            },
+            "DeleteTimelinesDto": {
+                "type": "object",
+                "properties": {
+                    "ids": {
+                        "description": "Timeline Ids for delete",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "maxLength": 255
+                        }
+                    }
+                },
+                "required": [
+                    "ids"
+                ]
+            },
+            "DeleteMalOpsDto": {
+                "type": "object",
+                "properties": {
+                    "malOpIds": {
+                        "description": "MalOp Ids for delete",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "maxLength": 255
+                        }
+                    }
+                },
+                "required": [
+                    "malOpIds"
+                ]
+            },
+            "CreateExternalCommentAttachment": {
+                "type": "object",
+                "properties": {
+                    "fileName": {
+                        "type": "string",
+                        "default": "fileName"
+                    },
+                    "mimetype": {
+                        "type": "string",
+                        "enum": [
+                            "image/png",
+                            "image/jpeg",
+                            "image/bmp",
+                            "video/mp4",
+                            "application/pdf",
+                            "video/quicktime"
+                        ],
+                        "default": "image/png"
+                    },
+                    "size": {
+                        "type": "number",
+                        "default": 0
+                    },
+                    "url": {
+                        "type": "string",
+                        "default": "https://company.zendesk.com/attachments/my_funny_profile_pic.png"
+                    }
+                },
+                "required": [
+                    "fileName",
+                    "mimetype",
+                    "size",
+                    "url"
+                ]
+            },
+            "CreateCommentExternalDto": {
+                "type": "object",
+                "properties": {
+                    "body": {
+                        "type": "string",
+                        "maxLength": 2000,
+                        "default": "This is a plain comment body"
+                    },
+                    "htmlBody": {
+                        "type": "string",
+                        "maxLength": 2000,
+                        "default": "This is a html comment body <b>Bold</b> <i>Italic</i>"
+                    },
+                    "externalId": {
+                        "type": "string",
+                        "description": "Comment external ID Unique in Project.",
+                        "default": "CM-001"
+                    },
+                    "malOpIdInternal": {
+                        "type": "string",
+                        "default": "674d6c688d35530be18bc6c5",
+                        "description": "Ticket internal ID. Either this or malOpIdExternal can be provided, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive."
+                    },
+                    "malOpIdExternal": {
+                        "type": "string",
+                        "description": "Ticket external ID. Either this or malOpIdInternal can be provided, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive. ",
+                        "default": "AL-001"
+                    },
+                    "attachments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CreateExternalCommentAttachment"
+                        }
+                    }
+                },
+                "required": [
+                    "body",
+                    "htmlBody",
+                    "externalId",
+                    "attachments"
+                ]
+            },
+            "UpdateCommentExternalDto": {
+                "type": "object",
+                "properties": {
+                    "body": {
+                        "type": "string",
+                        "maxLength": 2000,
+                        "default": "This is a plain comment body"
+                    },
+                    "htmlBody": {
+                        "type": "string",
+                        "maxLength": 2000,
+                        "default": "This is a html comment body <b>Bold</b> <i>Italic</i>"
+                    },
+                    "attachments": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/CreateExternalCommentAttachment"
+                        }
+                    }
+                },
+                "required": [
+                    "body",
+                    "htmlBody",
+                    "attachments"
+                ]
+            },
+            "RegisterRemediationActionsDto": {
+                "type": "object",
+                "properties": {
+                    "malOpIdInternal": {
+                        "type": "string",
+                        "default": "674d6c688d35530be18bc6c5",
+                        "description": "MalOp internal ID. Either this or malOpIdExternal can be provided, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive."
+                    },
+                    "malOpIdExternal": {
+                        "type": "string",
+                        "description": "Ticket external ID. Either this or malOpIdInternal can be provided, but not both. If one is specified, the other must be omitted. In other word, they are mutually exclusive. ",
+                        "default": "AL-001"
+                    },
+                    "remediationActions": {
+                        "description": "Remediation Actions",
+                        "default": [
+                            {
+                                "uuid": "RM-001",
+                                "action": "henshin",
+                                "elementType": "elementType",
+                                "elementName": "elementName",
+                                "groupType": "groupType",
+                                "groupName": "groupName",
+                                "assetName": "assetName",
+                                "metadata": {
+                                    "key": "value"
+                                },
+                                "revertable": false
+                            }
+                        ],
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RemediationActionDto"
+                        }
+                    }
+                },
+                "required": [
+                    "remediationActions"
+                ]
+            },
+            "UpdateRemediationActionStatusDto": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "type": "string",
+                        "enum": [
+                            "AWAITING",
+                            "PENDING",
+                            "SUBMITTED",
+                            "SUCCESS",
+                            "ERROR",
+                            "REVERT_PENDING",
+                            "REVERT_SUBMITTED",
+                            "REVERT_SUCCESS",
+                            "REVERT_ERROR"
+                        ],
+                        "description": "Remediation action Asset Status",
+                        "default": "PENDING"
+                    },
+                    "error": {
+                        "type": "string",
+                        "description": "Error",
+                        "default": "Error"
+                    }
+                },
+                "required": [
+                    "status"
+                ]
+            },
+            "DeleteRemediationActionsDto": {
+                "type": "object",
+                "properties": {
+                    "ids": {
+                        "description": "Remediation action Ids for delete",
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "maxLength": 255
+                        }
+                    }
+                },
+                "required": [
+                    "ids"
+                ]
+            },
+            "UpdateRemediationActionDto": {
+                "type": "object",
+                "properties": {
+                    "action": {
+                        "type": "string",
+                        "description": "Remediation action",
+                        "default": "Host Isolation"
+                    },
+                    "elementType": {
+                        "type": "string",
+                        "description": "Element type",
+                        "default": "Element Type 1"
+                    },
+                    "elementName": {
+                        "type": "string",
+                        "description": "Element Name",
+                        "default": "Element Name 1"
+                    },
+                    "groupType": {
+                        "type": "string",
+                        "description": "Group type",
+                        "default": "Group Type 1"
+                    },
+                    "groupName": {
+                        "type": "string",
+                        "description": "Group name",
+                        "default": "Group Name 1"
+                    },
+                    "assetName": {
+                        "type": "string",
+                        "description": "Asset name",
+                        "default": "Asset Name 1"
+                    },
+                    "metadata": {
+                        "type": "object",
+                        "description": "metadata",
+                        "default": {
+                            "key": "value"
+                        }
+                    },
+                    "revertable": {
+                        "type": "boolean",
+                        "description": "Is the action reversible?",
+                        "default": false
+                    }
+                }
+            }
+        }
+    }
+}
