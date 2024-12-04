@@ -20,12 +20,30 @@ Custom element for Open-API to PDF generation
 ## Documentation
 [Check out the usage and examples](https://mrin9.github.io/RapiPdf/)
 
+4. Tell Node to use the legacy OpenSSL provider
+
+On Unix-like (Linux, macOS, Git bash, etc.):
+
+export NODE_OPTIONS=--openssl-legacy-provider
+On Windows command prompt:
+
+set NODE_OPTIONS=--openssl-legacy-provider
+On PowerShell:
+
+$env:NODE_OPTIONS = "--openssl-legacy-provider"
+
 ## Build Process
 We recommend `yarn` over `npm` as we use yarn [resolutions](https://yarnpkg.com/lang/en/docs/selective-version-resolutions/) to keep the bundle size smaller. As of this writing this feature is not supported in npm natively
 ```bash
 # Clone / Download the project then
 yarn install
 
+#On Unix-like (Linux, macOS, Git bash, etc.):
+
+export NODE_OPTIONS=--openssl-legacy-provider
+#On Windows command prompt:
+
+set NODE_OPTIONS=--openssl-legacy-provider
 # build will generate rapidoc-min.js, this is the only file you will need.
 # use it in the script tag of your html <script type="text/javascript" src="rapidoc-min.js"></script></body>
 yarn build
